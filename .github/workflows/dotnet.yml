@@ -37,14 +37,14 @@ jobs:
           reports: '**/coverage.cobertura.xml'
           targetdir: 'coveragereport'
           reporttypes: 'HtmlInline;MarkdownSummaryGithub'
-      - name: Create coverage summary
+      - name: Create coverage report
         run: |
-          echo "# Code Coverage Summary\n" > CoverageSummary.md
-          cat coveragereport/SummaryGithub.md >> CoverageSummary.md
+          echo "# Code Coverage Report" > CodeCoverageReport.md
+          cat coveragereport/SummaryGithub.md >> CodeCoverageReport.md
       # PR へ MarkdownSummary をコメント／CheckRun として添付
-      - name: Publish coverage summary
-        run: cat CoverageSummary.md >> $env:GITHUB_STEP_SUMMARY
+      - name: Publish coverage report
+        run: cat CodeCoverageReport.md >> $env:GITHUB_STEP_SUMMARY
       - name: Sticky Pull Request Comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          path: CoverageSummary.md
+          path: CodeCoverageReport.md
