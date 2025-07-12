@@ -31,4 +31,4 @@ jobs:
           reporttypes: 'HtmlInline;MarkdownSummaryGithub'
       # PR へ MarkdownSummary をコメント／CheckRun として添付
       - name: Publish coverage comment
-        run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+        run: cat coveragereport/SummaryGithub.md >> $env:GITHUB_STEP_SUMMARY
