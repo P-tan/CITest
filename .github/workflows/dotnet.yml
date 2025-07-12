@@ -36,7 +36,7 @@ jobs:
         with:
           reports: '**/coverage.cobertura.xml'
           targetdir: 'coveragereport'
-          reporttypes: 'HtmlInline;MarkdownSummaryGithub'
+          reporttypes: 'MarkdownSummaryGithub'
       - name: Create coverage report
         run: |
           echo "# Code Coverage Report" > CodeCoverageReport.md
