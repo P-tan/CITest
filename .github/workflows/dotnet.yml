@@ -1,0 +1,24 @@
+name: .NET Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+      - name: Restore dependencies
+        run: dotnet restore CITest.sln
+      - name: Build
+        run: dotnet build CITest.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test CITest.sln --no-build --verbosity normal
