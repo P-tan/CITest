@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: read
+  contents: write  # リポジトリの内容に書き込み
   pull-requests: write     # コメント投稿に必須
 
 concurrency:
