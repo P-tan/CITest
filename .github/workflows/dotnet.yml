@@ -21,4 +21,14 @@ jobs:
       - name: Build
         run: dotnet build CITest.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test CITest.sln --no-build --configuration Release --verbosity normal
+        run: dotnet test CITest.sln --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+      # カバレッジレポート生成（Markdown ＋ HTML）
+      - name: Generate coverage report
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5
+        with:
+          reports: '**/coverage.cobertura.xml'
+          targetdir: 'coveragereport'
+          reporttypes: 'HtmlInline;MarkdownSummaryGithub'
+      # PR へ MarkdownSummary をコメント／CheckRun として添付
+      - name: Publish coverage comment
+        run: cat coveragereport/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
