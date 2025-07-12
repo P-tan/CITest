@@ -21,4 +21,4 @@ jobs:
       - name: Build
         run: dotnet build CITest.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test CITest.sln --no-build --verbosity normal
+        run: dotnet test CITest.sln --no-build --configuration Release --verbosity normal
